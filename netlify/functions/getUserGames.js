@@ -19,7 +19,12 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(games),
+      headers: {
+        'Access-Control-Allow-Origin': '*',  // 모든 도메인에서 API 접근 허용
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',  // 허용할 HTTP 메서드
+        'Access-Control-Allow-Headers': 'Content-Type',  // 허용할 헤더 설정
+      },
+      body: JSON.stringify(response.data.response.games),
     };
   } catch (error) {
     console.error("Error fetching games:", error);
