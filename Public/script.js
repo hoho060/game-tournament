@@ -47,8 +47,8 @@ async function fetchGameList() {
   
   // API URL을 동적으로 설정하는 함수
   const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getAppList?limit=10&page=${page}` // 배포된 Netlify 서버
-
-  try {
+	 while (nextPage) {
+			try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -63,10 +63,13 @@ async function fetchGameList() {
 
     console.log(data);
     return data.applist.apps;
-  } catch (error) {
-    console.error("Error fetching app list:", error);
-    return [];
+  		} catch (error) {
+   	 console.error("Error fetching app list:", error);
+    	return [];
+  		}
   }
+
+  
 }
 
 async function renderGameList(games) {
