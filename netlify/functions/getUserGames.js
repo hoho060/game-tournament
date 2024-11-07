@@ -32,7 +32,7 @@ exports.handler = async function(event, context) {
       body: JSON.stringify(response.data.response.games),
     };
   } catch (error) {
-    console.error("Error fetching games:", error);
+    console.error("Error fetching games:", error.message);
     return {
       statusCode: 500,
       headers: {
