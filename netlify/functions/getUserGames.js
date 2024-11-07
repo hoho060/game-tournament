@@ -4,7 +4,7 @@ const STEAM_API_KEY = "C25F968E9DCFA3C75952CBBFD1B15911"; // 본인의 Steam API
 
 exports.handler = async (event, context) => {
   const steamid = event.path.steamid('/')[3]; // 서버리스 함수에서는 URL 파라미터를 이렇게 가져옵니다
-  console.log(`Request for Steam ID: ${steamid} // Steam ID 로그
+  console.log(`Request for Steam ID: ${steamid}`) // Steam ID 로그
   
   const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${STEAM_API_KEY}&steamid=${steamid}&format=json;`;
   
