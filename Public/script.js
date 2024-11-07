@@ -13,12 +13,7 @@ async function fetchGames() {
   try {
 
     
-    const response = fetch(apiUrl, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = fetch(apiUrl);
     if (!response.ok) throw new Error("게임 목록을 가져올 수 없습니다.");
     const games = await response.json();
 
