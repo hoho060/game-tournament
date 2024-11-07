@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게임 취향 토너먼트</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <!-- 나중에 CSS 파일 연결 -->
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>게임 취향 토너먼트</h1>
+      <p>당신의 게임 목록을 바탕으로 토너먼트를 진행합니다!</p>
+    </header>
+
+    <main>
+      <section id="game-list">
+        <h2>내 게임 목록</h2>
+        <ul id="games"></ul>
+      </section>
+
+      <input type="text" id="steamidInput" placeholder="Enter your Steam ID" />
+      <button id="startTournamentBtn">게임 불러오기</button>
+
+      <div>
+        <input
+          type="text"
+          id="game-input"
+          placeholder="게임 이름을 입력하세요"
+        />
+        <button id="add-game">게임 추가</button>
+      </div>
+
+      <section id="tournament" style="display: none">
+        <h2>토너먼트 진행하기</h2>
+        <button id="start-tournament">토너먼트 시작</button>
+        <div id="matchup"></div>
+        <div id="winner-selection" style="display: none">
+          <button id="select-winner-1">승자: 게임1</button>
+          <button id="select-winner-2">승자: 게임2</button>
+        </div>
+        <div id="result">
+          <!-- 토너먼트 결과가 여기에 표시될 거예요 -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 게임 취향 토너먼트 사이트</p>
+    </footer>
+  </body>
+</html>
