@@ -19,16 +19,17 @@ async function fetchGames() {
     const games = await response.json();
 			console.log(`게임 목록 (페이지 ${page}):`, data);
 
-
-
-    //플레이 시간이 0인 게임을 제외
-    const filteredGames = games.filter((game) => game.playtime_forever > 0);
-			
 			if (data.length === 10) {
 				 page +=1; // 다음 페이지 번호로 이동
 			} else {
 				 nextPage = false;
 			}
+
+
+    //플레이 시간이 0인 게임을 제외
+    const filteredGames = games.filter((game) => game.playtime_forever > 0);
+			
+			
 			
     renderGameList(filteredGames);
   } catch (error) {
