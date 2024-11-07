@@ -27,6 +27,7 @@
   "homepage": "https://github.com/lucakiebel/appid#readme",
   "dependencies": {
     "appid": "^1.0.3",
+    "axios": "^1.7.7",
     "cors": "^2.8.5",
     "ms": "^2.1.1",
     "request": "^2.88.0",
