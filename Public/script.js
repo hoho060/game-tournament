@@ -3,6 +3,7 @@ let nextRound = []; // 다음 라운드의 승자 리스트
 
 async function fetchGames() {
   const steamid = document.getElementById("steamidInput").value.trim();
+  const apiUrl = process.env.NODE_ENV === 'production' ? `https://gameworldcup.netlify.app/.netlify/functions/getUserGames/${steamid}` : `http://localhost:3000/api/games/${steamid}`;
 
   if (!steamid) {
     alert("Steam ID를 입력하세요.");
@@ -10,7 +11,14 @@ async function fetchGames() {
   }
 
   try {
-    const response = await fetch(`https://gameworldcup.netlify.app/api/games/${steamid}`);
+
+    
+    const response = fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (!response.ok) throw new Error("게임 목록을 가져올 수 없습니다.");
     const games = await response.json();
 
@@ -25,9 +33,11 @@ async function fetchGames() {
 
 // Steam API에서 게임 목록을 가져오는 함수
 async function fetchGameList() {
-  const url = `http://localhost:3000/api/applist`;
+  
+  const apiUrl = process.env.NODE_ENV === 'production' ? "https://gameworldcup.netlify.app/.netlify/functions/getAppList" : "http://localhost:3000/api/applist";
+
   try {
-    const response = await fetch(url);
+    const response = await fetch(apiUrl);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
