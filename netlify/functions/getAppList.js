@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-exports.handler = async (event, context) => {
+exports.handler = async function(event, context) => {
   try {
     const response = await axios.get(
       "https://api.steampowered.com/ISteamApps/GetAppList/v2/"
