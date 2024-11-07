@@ -1,6 +1,6 @@
 const axios = require("axios");
 
- // 본인의 Steam API 키로 대체하세요
+const STEAM_API_KEY = "C25F968E9DCFA3C75952CBBFD1B15911"; // 본인의 Steam API 키로 대체하세요
 
 exports.handler = async function(event, context) {
   const steamid = event.path.split('/')[3]; // 서버리스 함수에서는 URL 파라미터를 이렇게 가져옵니다
