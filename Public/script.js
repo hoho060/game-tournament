@@ -17,9 +17,9 @@ async function fetchGames() {
     const response = await fetch(apiUrl);
     if (!response.ok) throw new Error("게임 목록을 가져올 수 없습니다.");
     const games = await response.json();
-			console.log(`게임 목록 (페이지 ${page}):`, data);
+			console.log(`게임 목록 (페이지 ${page}):`, games);
 
-			if (data.length === 10) {
+			if (games.length === 10) {
 				 page +=1; // 다음 페이지 번호로 이동
 			} else {
 				 nextPage = false;
