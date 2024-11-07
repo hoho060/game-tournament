@@ -16,7 +16,7 @@ exports.handler = async function(event, context) {
       body: JSON.stringify(response.data),  // 응답 본문에 Steam App List 데이터를 반환
     };
   } catch (error) {
-    console.error("Error fetching app list:", error);
+    console.error("Error fetching app list:", error.message);
     return {
       statusCode: 500,
       body: "Error fetching app list from Steam",
