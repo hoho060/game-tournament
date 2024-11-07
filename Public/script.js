@@ -1,10 +1,11 @@
 let currentRound = []; //현재 라운드의 게임 리스트
 let nextRound = []; // 다음 라운드의 승자 리스트
-let nextPage = true; //  다음 페이지가 있는지 확인할 변수
-let page = 1; //페이지 번호
+
 
 
 async function fetchGames() {
+  	let nextPage = true; //  다음 페이지가 있는지 확인할 변수
+	 let page = 1; //페이지 번호
   const steamid = document.getElementById("steamidInput").value.trim();
   const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getUserGames/${steamid}?limit=10&page=${page}`  // 배포된 Netlify 환경
 
@@ -41,9 +42,11 @@ async function fetchGames() {
 
 // Steam API에서 게임 목록을 가져오는 함수
 async function fetchGameList() {
+	 let nextPage = true; //  다음 페이지가 있는지 확인할 변수
+  let page = 1; //페이지 번호
   
   // API URL을 동적으로 설정하는 함수
-  const apiUrl = "https://gameworldcup.netlify.app/.netlify/functions/getAppList"  // 배포된 Netlify 서버
+  const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getAppList?limit=10&page=${page}` // 배포된 Netlify 서버
 
   try {
     const response = await fetch(apiUrl);
@@ -52,6 +55,12 @@ async function fetchGameList() {
     }
 
     const data = await response.json();
+			if (data.length === 10) {
+				 page +=1; // 다음 페이지 번호로 이동
+			} else {
+				 nextPage = false;
+			}
+
     console.log(data);
     return data.applist.apps;
   } catch (error) {
