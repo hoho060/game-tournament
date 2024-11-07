@@ -10,7 +10,7 @@ async function fetchGames() {
   }
 
   try {
-    const response = await fetch(`http://localhost:3000/api/games/${steamid}`);
+    const response = await fetch(`https://gameworldcup.netlify.app/api/games/${steamid}`);
     if (!response.ok) throw new Error("게임 목록을 가져올 수 없습니다.");
     const games = await response.json();
 
