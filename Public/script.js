@@ -49,23 +49,23 @@ async function fetchGameList() {
   const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getAppList?limit=10&page=${page}` // 배포된 Netlify 서버
 	 while (nextPage) {
 			try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    	 const response = await fetch(apiUrl);
+    	 if (!response.ok) {
+      		 throw new Error(`HTTP error! Status: ${response.status}`);
+   	  }
 
-    const data = await response.json();
-			if (data.length === 10) {
-				 page +=1; // 다음 페이지 번호로 이동
-			} else {
+    	 const data = await response.json();
+				 if (data.length === 10) {
+					  page +=1; // 다음 페이지 번호로 이동
+			  	} else {
 				 nextPage = false;
-			}
+				 }
 
-    console.log(data);
-    return data.applist.apps;
+    	 console.log(data);
+    	 return data.applist.apps;
   		} catch (error) {
-   	 console.error("Error fetching app list:", error);
-    	return [];
+   	 	 console.error("Error fetching app list:", error);
+     	return [];
   		}
   }
 
