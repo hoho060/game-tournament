@@ -87,10 +87,10 @@ async function fetchGameList() {
    	 	 console.error("Error fetching app list:", error);
      	return [];
   		}
-			return apps;
+			
   }
 
-  
+ 		return apps;
 }
 
 async function renderGameList(games) {
