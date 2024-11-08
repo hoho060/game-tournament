@@ -81,7 +81,7 @@ async function fetchGameList() {
 					// 받아온 데이터에서 apps 리스트를 추출
 					pageResults.forEach(data => {
 						 apps = [...apps, ...data.apps];
-					}
+					})
 					
 				 
 
