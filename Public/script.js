@@ -17,7 +17,7 @@ async function fetchGames() {
     const response = await fetch(apiUrl);
     if (!response.ok) throw new Error("게임 목록을 가져올 수 없습니다.");
     const games = await response.json();
-			console.log(`게임 목록 (페이지 ${page}):`, games);
+			console.log(`게임 목록:`, games);
 
 			
 
