@@ -67,7 +67,12 @@ async function fetchGameList() {
 				 		 nextPage = false;
 				 }
 
-    	 console.log(data);
+      // 페이지가 더 있는지 확인
+					const totalApps = data.total;
+					const totalPages = Math.ceil(totalApps / limit);
+					console.log(`현재 페이지: ${page}, 총 페이지 수: ${totalPages}`);
+
+    
     	 return data.applist.apps;
   		} catch (error) {
    	 	 console.error("Error fetching app list:", error);
