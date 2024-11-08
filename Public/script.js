@@ -41,54 +41,59 @@ async function fetchGames() {
 async function fetchGameList() {
 	 let nextPage = true; //  다음 페이지가 있는지 확인할 변수
   let page = 1; //페이지 번호
+	 const totalPages = Math.ceil(totalApps / page);
   
   // API URL을 동적으로 설정하는 함수
   const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getAppList?limit=100&page=${page}` // 배포된 Netlify 서버
 
 		let apps = []; // 앱 리스트를 저장할 배열	
-	
-	 while (nextPage) {
-			try {
-				 
 
-    	 const response = await fetch(apiUrl, {
+		const fetchPageData = async (page) => {
+			const response = await fetch(apiUrl, {
 						 method: 'GET',
 						 headers: {
 								 'Content-Type': 'application/json',
 							}
 						 
-				 });
+			});
 
 					
 
-    	 if (!response.ok) {
-      		 throw new Error(`HTTP error! Status: ${response.status}`);
-   	  }
+    if (!response.ok) {
+      	throw new Error(`HTTP error! Status: ${response.status}`);
+   	}
 
-    	 const data = await response.json();
+`			return response.json();
+		}
+
+		const pagePromises = [];
+		for (let i = 1; i <= totalPages; i++) {
+			pagePromises.push(fetchPageData(i));
+		}
+	
+		try {
+				 
+
+    	 
+
+    	 const pageResults = await Promise.all(pagePromises);
 
 					// 받아온 데이터에서 apps 리스트를 추출
-					apps = [...apps, ...data.apps]
-					console.log(apps);
-				 if (data.apps.length === 100) {
-					  page +=1; // 다음 페이지 번호로 이동
-			  	} else {
-				 		 nextPage = false;
-				 }
+					pageResults.forEach(data => {
+						 apps = [...apps, ...data.apps];
+					}
+					console.log(`모든 게임 데이터를 가져왔습니다. 총 게임 수: ${app.length}`);
+				 
 
       // 페이지가 더 있는지 확인
-					const totalApps = data.total;
-					const totalPages = Math.ceil(totalApps / page);
-					console.log(`현재 페이지: ${page}, 총 페이지 수: ${totalPages}`);
-					console.log(data.apps);
-    
+					
     	 
-  		} catch (error) {
+  	} catch (error) {
    	 	 console.error("Error fetching app list:", error);
      	return [];
-  		}
+  	}
 			
-  }
+  
 
  		return apps;
 }
