@@ -64,7 +64,7 @@ async function fetchGameList() {
 				 if (data.length === 1) {
 					  page +=1; // 다음 페이지 번호로 이동
 			  	} else {
-				 nextPage = false;
+				 		 nextPage = false;
 				 }
 
     	 console.log(data);
