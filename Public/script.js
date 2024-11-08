@@ -41,11 +41,13 @@ async function fetchGames() {
 async function fetchGameList() {
 	 let nextPage = true; //  다음 페이지가 있는지 확인할 변수
   let page = 1; //페이지 번호
-	const totalApps = data.total;
-	 const totalPages = Math.ceil(totalApps / page);
+	
+	
   
   // API URL을 동적으로 설정하는 함수
   const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getAppList?limit=100&page=${page}` // 배포된 Netlify 서버
+	const totalApps = data.total;
+	const totalPages = Math.ceil(totalApps / page);
 
 		let apps = []; // 앱 리스트를 저장할 배열	
 
