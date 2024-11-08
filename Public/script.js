@@ -49,7 +49,15 @@ async function fetchGameList() {
   const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getAppList?limit=1&page=${page}` // 배포된 Netlify 서버
 	 while (nextPage) {
 			try {
-    	 const response = await fetch(apiUrl);
+				 const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); //10초 대기
+
+    	 const response = await fetch(apiUrl, {
+						 signal: controller.signal,
+				 });
+
+					clearTimeout(timeoutId);
+
     	 if (!response.ok) {
       		 throw new Error(`HTTP error! Status: ${response.status}`);
    	  }
@@ -220,3 +228,4 @@ function finishMatch() {
     alert("토너먼트가 끝났습니다! 우승자는: " + currentRound[0]);
   }
 }
+
