@@ -70,7 +70,7 @@ async function fetchGameList() {
 					// 받아온 데이터에서 apps 리스트를 추출
 					apps = [...apps, ...data.apps]
 					console.log(apps);
-				 if (data.apps.length === 1) {
+				 if (data.apps.length === 100) {
 					  page +=1; // 다음 페이지 번호로 이동
 			  	} else {
 				 		 nextPage = false;
