@@ -73,7 +73,7 @@ async function fetchGameList() {
 					console.log(`현재 페이지: ${page}, 총 페이지 수: ${totalPages}`);
 
     
-    	 return apps;
+    	 return data.apps;
   		} catch (error) {
    	 	 console.error("Error fetching app list:", error);
      	return [];
