@@ -53,6 +53,10 @@ async function fetchGameList() {
       const timeoutId = setTimeout(() => controller.abort(), 10000); //10초 대기
 
     	 const response = await fetch(apiUrl, {
+						 method: 'GET',
+						 headers: {
+								 'Content-Type': 'application/json',
+							}
 						 signal: controller.signal,
 				 });
 
