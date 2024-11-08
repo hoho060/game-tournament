@@ -46,8 +46,7 @@ async function fetchGameList() {
   
   // API URL을 동적으로 설정하는 함수
   const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getAppList?limit=100&page=${page}` // 배포된 Netlify 서버
-	const totalApps = data.total;
-	const totalPages = Math.ceil(totalApps / page);
+	
 
 		let apps = []; // 앱 리스트를 저장할 배열	
 
@@ -69,20 +68,25 @@ async function fetchGameList() {
 			return response.json();
 		}
 
-		const pagePromises = [];
-		for (let i = 1; i <= totalPages; i++) {
-			pagePromises.push(fetchPageData(i));
-		}
+		
 	
 		try {
-				 
+			// 첫 번째 페이지 데이터를 가져옵니다.
+   			 const firstPageData = await fetchPageData(page);
+   			 const totalApps = firstPageData.total; // 전체 게임 수
+    			 const totalPages = Math.ceil(totalApps / limit); // 전체 페이지 수 계산 (올림 처리)
 
+		
+			const pagePromises = [];
+			for (let i = 1; i <= totalPages; i++) {
+				pagePromises.push(fetchPageData(i));
+			}
     	 
 
     	 const pageResults = await Promise.all(pagePromises);
 
 					// 받아온 데이터에서 apps 리스트를 추출
-					pageResults.forEach(item => {
+					pageResults.forEach(data => {
 						 apps = [...apps, ...data.apps];
 					})
 					
