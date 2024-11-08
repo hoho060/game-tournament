@@ -55,7 +55,7 @@ async function fetchGameList() {
    	  }
 
     	 const data = await response.json();
-				 if (data.length === 10) {
+				 if (data.length === 1) {
 					  page +=1; // 다음 페이지 번호로 이동
 			  	} else {
 				 nextPage = false;
