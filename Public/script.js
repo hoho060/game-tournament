@@ -82,7 +82,7 @@ async function fetchGameList() {
 					pageResults.forEach(data => {
 						 apps = [...apps, ...data.apps];
 					}
-					console.log(`모든 게임 데이터를 가져왔습니다. 총 게임 수: ${app.length}`);
+					
 				 
 
       // 페이지가 더 있는지 확인
