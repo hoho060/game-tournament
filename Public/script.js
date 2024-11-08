@@ -4,10 +4,9 @@ let nextRound = []; // 다음 라운드의 승자 리스트
 
 
 async function fetchGames() {
-  	let nextPage = true; //  다음 페이지가 있는지 확인할 변수
-	 let page = 1; //페이지 번호
+  
   const steamid = document.getElementById("steamidInput").value.trim();
-  const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getUserGames/${steamid}?limit=10&page=${page}`  // 배포된 Netlify 환경
+  const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getUserGames/${steamid}`  // 배포된 Netlify 환경
 
   if (!steamid) {
     alert("Steam ID를 입력하세요.");
@@ -20,11 +19,7 @@ async function fetchGames() {
     const games = await response.json();
 			console.log(`게임 목록 (페이지 ${page}):`, games);
 
-			if (games.length === 10) {
-				 page +=1; // 다음 페이지 번호로 이동
-			} else {
-				 nextPage = false;
-			}
+			
 
 
     //플레이 시간이 0인 게임을 제외
@@ -35,7 +30,7 @@ async function fetchGames() {
     renderGameList(filteredGames);
   } catch (error) {
     console.error("Error fetching games:", error);
-			nextPage = false;
+			
     alert("게임 목록을 불러오는데 실패했습니다.");
   }
 }
