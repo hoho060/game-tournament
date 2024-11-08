@@ -46,7 +46,7 @@ async function fetchGameList() {
   let page = 1; //페이지 번호
   
   // API URL을 동적으로 설정하는 함수
-  const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getAppList?limit=10&page=${page}` // 배포된 Netlify 서버
+  const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getAppList?limit=1&page=${page}` // 배포된 Netlify 서버
 	 while (nextPage) {
 			try {
     	 const response = await fetch(apiUrl);
