@@ -71,7 +71,7 @@ async function fetchGameList() {
 					const totalApps = data.total;
 					const totalPages = Math.ceil(totalApps / 1);
 					console.log(`현재 페이지: ${page}, 총 페이지 수: ${totalPages}`);
-
+					console.log(data.apps);
     
     	 return data.apps;
   		} catch (error) {
