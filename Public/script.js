@@ -49,18 +49,17 @@ async function fetchGameList() {
   const apiUrl = `https://gameworldcup.netlify.app/.netlify/functions/getAppList?limit=1&page=${page}` // 배포된 Netlify 서버
 	 while (nextPage) {
 			try {
-				 const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000); //10초 대기
+				 
 
     	 const response = await fetch(apiUrl, {
 						 method: 'GET',
 						 headers: {
 								 'Content-Type': 'application/json',
 							}
-						 signal: controller.signal,
+						 
 				 });
 
-					clearTimeout(timeoutId);
+					
 
     	 if (!response.ok) {
       		 throw new Error(`HTTP error! Status: ${response.status}`);
