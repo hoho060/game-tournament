@@ -69,7 +69,7 @@ async function fetchGameList() {
 
       // 페이지가 더 있는지 확인
 					const totalApps = data.total;
-					const totalPages = Math.ceil(totalApps / limit);
+					const totalPages = Math.ceil(totalApps / 1);
 					console.log(`현재 페이지: ${page}, 총 페이지 수: ${totalPages}`);
 
     
