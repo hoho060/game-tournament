@@ -74,7 +74,7 @@ async function fetchGameList() {
 			// 첫 번째 페이지 데이터를 가져옵니다.
    			 const firstPageData = await fetchPageData(page);
    			 const totalApps = firstPageData.total; // 전체 게임 수
-    			 const totalPages = Math.ceil(totalApps / limit); // 전체 페이지 수 계산 (올림 처리)
+    			 const totalPages = Math.ceil(totalApps / 100); // 전체 페이지 수 계산 (올림 처리)
 
 		
 			const pagePromises = [];
